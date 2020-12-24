@@ -12,6 +12,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -58,18 +60,12 @@ public class MainActivity extends AppCompatActivity {
 
         Call<LanguagesResponse> call = api.getLanguages(); // создаём объект-вызов
         call.enqueue(new LanguagesCallback());
-        JSONObject json = new JSONObject();
-        try {
-            json.accumulate("Text", "Я люблю программирование");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        Translate translateApi = retrofit.create(Translate.class);
+        JsonObject json = new JsonObject();
+        json.addProperty("Text", "Я люблю программирование");
         translateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<String> translatedTextCall = translateApi.translate(json);
+                Call<TranslatedText> translatedTextCall = api.translate(json);
                 Log.d("mytag", "onCreate: " + json.toString());
 
                 translatedTextCall.enqueue(new TranslatedTextCallback());
@@ -98,12 +94,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    static class TranslatedTextCallback implements Callback<String>
+    static class TranslatedTextCallback implements Callback<TranslatedText>
     {
 
         @Override
-        public void onResponse(Call<String> call, Response<String> response)
+        public void onResponse(Call<TranslatedText> call, Response<TranslatedText> response)
         {
+            Log.d("mytag", "onResponse: " + call.request().toString());
             if (response.isSuccessful())
                 Log.d("mytag", "TranslatedTextCallback: " + response.headers());
             else
@@ -112,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onFailure(Call<String> call, Throwable t)
+        public void onFailure(Call<TranslatedText> call, Throwable t)
         {
             Log.d("mytag", "onFailure: " + t.getMessage());
         }

@@ -2,6 +2,8 @@ package com.example.azuretranslation;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.JsonObject;
+
 import org.json.JSONObject;
 
 import retrofit2.Call;
@@ -31,7 +33,7 @@ public interface AzureTranslationAPI {
             "Ocp-Apim-Subscription-Region:" + REGION
             // TODO: указать ключ и регион
     })
-    Call<String> translate(@Body String obj);
+    Call<TranslatedText> translate(@Body JsonObject obj);
 
     // TranslatedText - формат ответа от сервера
     // Тип ответа - TranslatedText, действие - translate, содержание запроса - пустое (нет полей формы)
