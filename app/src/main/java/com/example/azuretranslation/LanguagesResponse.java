@@ -3,6 +3,7 @@ package com.example.azuretranslation;
 import android.util.Log;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.Map;
 
 public class LanguagesResponse {
@@ -12,6 +13,7 @@ public class LanguagesResponse {
     public String toString() {
 
         // перечень языков объединяем в одну строку
+
         String  languages = "";
         for (String l: translation.keySet())
         {

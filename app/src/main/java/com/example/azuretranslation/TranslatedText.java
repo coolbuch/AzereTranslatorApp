@@ -7,10 +7,26 @@ import java.util.ArrayList;
 class TranslatedText
 {
     // TODO: указать необходимые поля хранения ответа от API при переводе текста
-    ArrayList<String> text;
+    String text;
     @NonNull
     @Override
     public String toString() {
-        return text.toString() + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAa";
+        return text;
+    }
+}
+
+class RecievedJson
+{
+    ArrayList<TranslatedText> translations;
+
+    public RecievedJson(ArrayList<TranslatedText> translations)
+    {
+        this.translations = translations;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return translations.toString();
     }
 }

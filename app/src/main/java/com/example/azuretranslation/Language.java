@@ -20,6 +20,7 @@ class Language {
     @Override
     public String toString()
     {
-        return name;
+        return abr;
     }
+    public String getAbr(){ return abr; }
 }
