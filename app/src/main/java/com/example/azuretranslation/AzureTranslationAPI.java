@@ -19,7 +19,7 @@ public interface AzureTranslationAPI {
     String API_URL = "https://api.cognitive.microsofttranslator.com";  //https://eastasia.api.cognitive.microsoft.com/
 
     // TODO: рекомендуется использовать свой ключ, чтобы получить доп. балл
-    String key = "3e985f30c7e8447296a145b9d7e97f9c"; //
+    String key = "43a4d51635ab42ef99ac9741131b146a"; //
     String REGION = "eastasia";
     String lang = "es";
 
